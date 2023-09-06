@@ -1,9 +1,7 @@
 import React from 'react'
-import { formatToLocalTime, iconUrlFromCode } from '../services/weatherService'
+import { iconUrlFromCode } from '../services/weatherService'
 
 function Forecast({ title, items }) {
-  console.log(items)
-
   return (
     <div>
       <div className='flex items-center justify-start mt-6'>
