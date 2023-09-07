@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { UilSearch, UilLocationPoint } from '@iconscout/react-unicons'
+import { toast } from 'react-toastify'
 
 function Inputs({ setQuery, units, setUnits }) {
   const [city, setCity] = useState('')
@@ -15,9 +16,9 @@ function Inputs({ setQuery, units, setUnits }) {
 
   const handleLocationClick = () => {
     if (navigator.geolocation) {
-      // toast.info('Fetching users location.')
+      toast.info('Fetching users location.')
       navigator.geolocation.getCurrentPosition((position) => {
-        // toast.success('Location fetched!')
+        toast.success('Location fetched!')
         let lat = position.coords.latitude
         let lon = position.coords.longitude
 

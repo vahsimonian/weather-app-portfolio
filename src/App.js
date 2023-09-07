@@ -5,6 +5,8 @@ import TemperatureAndDetails from './components/TemperatureAndDetails'
 import Forecast from './components/Forecast'
 import getFormattedWeatherData from './services/weatherService'
 import { useEffect, useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
   const [query, setQuery] = useState({ q: 'moscow' })
@@ -13,15 +15,21 @@ function App() {
 
   useEffect(() => {
     const fetchWeather = async () => {
+      const message = query.q ? query.q : 'current location'
+
+      toast.info('Fetching weather for ' + message)
+
       getFormattedWeatherData({ ...query, ...units }).then((data) => {
+        toast.success(
+          `Successfully fetched weather for ${data.name}, ${data.country}`
+        )
+
         setWeather(data)
       })
     }
 
     fetchWeather()
   }, [query, units])
-
-  // console.log(weather)
 
   const formatBackground = () => {
     if (!weather) return 'from-cyan-700 to-blue-700'
@@ -47,6 +55,8 @@ function App() {
           <Forecast title={'daily forecast'} items={weather.daily} />
         </div>
       )}
+
+      <ToastContainer autoClose={3000} theme='colored' newestOnTop={true} />
     </div>
   )
 }
