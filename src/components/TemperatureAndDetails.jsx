@@ -31,12 +31,14 @@ function TemperatureAndDetails({
 
       <div className='flex flex-row items-center justify-between text-white py-3'>
         <img src={iconUrlFromCode(icon)} alt='sun' className='w-20' />
-        <p className='text-5xl'>{`${temp.toFixed()}°`}</p>
+        <p className='text-5xl'>{`${(temp - 273.15).toFixed()}°`}</p>
         <div className='flex flex-col space-y-2'>
           <div className='flex font-light text-small items-center justify-center'>
             <UilTemperature size={18} className='mr-1' />
             Real fell:
-            <span className='font-medium ml-1'>{`${feels_like.toFixed()}°`}</span>
+            <span className='font-medium ml-1'>{`${(
+              feels_like - 273.15
+            ).toFixed()}°`}</span>
           </div>
           <div className='flex font-light text-small items-center justify-center'>
             <UilTear size={18} className='mr-1' />

@@ -63,7 +63,11 @@ const formatForecastWeather = (data) => {
     }
   })
 
-  return { timezone, daily, hourly }
+  return {
+    timezone,
+    daily,
+    hourly,
+  }
 }
 
 const getFormattedWeatherData = async (searchParams) => {
@@ -80,7 +84,6 @@ const getFormattedWeatherData = async (searchParams) => {
     exclude: 'current, minutely, alerts',
     units: searchParams.units,
   }).then(formatForecastWeather)
-
   return { ...formattedCurrentWeather, ...formattedForecastWeather }
 }
 
